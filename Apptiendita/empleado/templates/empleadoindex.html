@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+
+            <h2>Dar de alta empleado</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/crear/" method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <p>Nombre:</p>
+                            <input type="text" id="nombreInput" name="nombreInput" class="form-control"
+                                placeholder="nombre" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Género:</p>
+                            <input type="text" id="generoInput" name="generoInput" class="form-control"
+                                placeholder="genero" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Edad:</p>
+                            <input type="number" id="edadInput" name="edadInput" class="form-control" placeholder="edad"
+                                maxlength="50" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Telefono:</p>
+                            <input type="text" id="telefonoInput" name="telefonoInput" class="form-control"
+                                placeholder="telefono" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Cargo:</p>
+                            <input type="text" id="cargoInput" name="cargoInput" class="form-control"
+                                placeholder="cargo" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Email:</p>
+                            <input type="text" id="emailInput" name="emailInput" class="form-control"
+                                placeholder="email" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Direccion:</p>
+                            <input type="text" id="direccionInput" name="direccionInput" class="form-control"
+                                placeholder="direccion" required> <br>
+                        </div>
+                        <div class="form-group">
+                            <p>Usuarioid:</p>
+                            <input type="text" id="usuarioIdInput" name="usuarioIdInput" class="form-control"
+                                placeholder="usuarioid" required> <br>
+                        </div>
+
+
+                        <div class="form-group">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block text-white ">guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h1>Lista de empleados</h1>
+            <div class="row">
+                <div class="col-2 mt-2 table-responsive-lg">
+                    <table class="table py-2  ">
+                        <thead class="bg-info">
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">nombre</th>
+                                <th scope="col">genero</th>
+                                <th scope="col">edad</th>
+                                <th scope="col">telefono</th>
+                                <th scope="col">cargo</th>
+                                <th scope="col">email</th>
+                                <th scope="col">direccion</th>
+                                <th scope="col">usuarioid</th>
+                                <th scope="col">eliminar</th>
+                                <th scope="col">editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for empleado in empleados %}
+                            <tr>
+                                <th scope="row">{{empleado.id}}</th>
+                                <td>{{empleado.nombre}}</td>
+                                <td>{{empleado.genero}}</td>
+                                <td>{{empleado.edad}}</td>
+                                <td>{{empleado.telefono}}</td>
+                                <td>{{empleado.cargo}}</td>
+                                <td>{{empleado.email}}</td>
+                                <td>{{empleado.direccion}} </td>
+                                <td>{{empleado.usuarioid_id}} </td>
+                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Eliminar </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Advertencia
+                                                        eliminar
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Está seguro de elminar el registro?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+
+                                                    <a type="button" href="{% url 'eliminar' empleado.id %}"><i
+                                                            class="fa-solid fa-file-pen"></i> Eliminar </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="{% url 'editar' empleado.id %}">
+                                        <i class="fa-solid fa-file-pen"></i> editar </a> </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

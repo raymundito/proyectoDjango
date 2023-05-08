@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content%}
+<h1> soy editar</h1>
+<form  method="POST">
+    {%csrf_token%}
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <p>Editar registro del empleado</p>
+                </div>
+                <div class="card-body">
+                    {{form.as_p}}
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-success">
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</form>
+{%  endblock%}

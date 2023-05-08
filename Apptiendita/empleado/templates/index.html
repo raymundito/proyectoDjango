@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block content%}
+<h1> Index</h1>
+<div class="row">
+    {% for empleado in empleados %}
+    <div class="col-4 mt-4">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h1><span class="badge  badge-pill badge-danger ml-2">
+                        {{empleado.id}}
+                    </span></h1>
+
+            </div>
+            <div class="card-body">
+                    
+                {{empleado.nombre}}       
+                {{empleado.genero}}       
+                {{empleado.edad}}       
+                {{empleado.telefono}}       
+                {{empleado.cargo}}       
+                {{empleado.email}}                   
+                {{empleado.direccion}}       
+                {{empleado.usuarioid_id}}      
+                     
+
+            </div>
+            <div class=" card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'editar' empleado.id %}">
+                            <i class="fa-solid fa-file-pen"></i> editar </a>
+                    </div>
+                    <div class="col-6">
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            eliminar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Advertencia eliminar</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro de elminar el registro?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                            
+                                        <a type="button" href="{% url 'eliminar' empleado.id %}">
+                                            <i class="fa-solid fa-file-pen"></i> Eliminar </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {%endfor%}
+
+</div>
+
+{% endblock%}
