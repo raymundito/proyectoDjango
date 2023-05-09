@@ -11,10 +11,10 @@ class EmpleadoForm(forms.ModelForm):
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
-        model= Usuario
+        model= Usuario # modelo Usuario
         fields= '__all__'
 
 class RolForm(forms.ModelForm):
     class Meta:
-        model= Rol
+        model= Rol #Modelo Rol
         fields= '__all__'
