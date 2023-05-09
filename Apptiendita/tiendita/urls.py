@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 #importar views
 from empleado import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home,  name="home"),
@@ -27,7 +28,6 @@ urlpatterns = [
     path('editar/<int:id>', views.editar,  name="editar"),
     path('editarUsuario/<int:id>', views.editarUsuario,  name="editarUsuario"),
     path('editarRol/<int:id>', views.editarRol,  name="editarRol"),
-    path('index/', views.index,  name="index"),
     path('layout/', views.layouts,  name="layouts"),
     path('eliminar/<int:id>/', views.eliminar,  name="eliminar"),
     path('eliminarUsuario/<int:id>/', views.eliminarUsuario,  name="eliminarUsuario"),

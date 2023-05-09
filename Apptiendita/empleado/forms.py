@@ -5,7 +5,7 @@ from empleado.models import Rol
 
 
 class EmpleadoForm(forms.ModelForm):
-    class Meta:
+    class Meta: #   Modelo que debe ser utilizado para crear el formulario
         model= Empleado
         fields= '__all__'
 

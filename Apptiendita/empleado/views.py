@@ -11,7 +11,7 @@ from django.contrib import messages
 from .models import Usuario
 from .models import Rol
 
-
+#funcion crear empleado
 def crear(request):    
     nombre = request.POST['nombreInput']
     genero= request.POST['generoInput']
@@ -56,32 +56,32 @@ def editar(request, id):
     }
     return render(request, 'editar.html', context)
 
-            
-
-def index(request):
-    empleados = Empleado.objects.all()
-    return render(request, 'empleadoindex.html', {'empleados': empleados}) 
-
-def eliminar(request,id):
-    empleados =Empleado.objects.get(id=id)
-    empleados.delete()
-    return redirect('/empleadoindex')
-
-
-def layouts(request):
-    return render(request, "layout.html")
-
-def home(request):
-    return render(request, "home.html")
+#Funcion index empleado           
 
 
 def empleadoindex(request):
     empleados = Empleado.objects.all()
     return render(request, 'empleadoindex.html', {'empleados': empleados}) 
 
+#Funciom eliminar empleado
+def eliminar(request,id):
+    empleados =Empleado.objects.get(id=id) #Se obtiene el id para eliminar el empleado
+    empleados.delete()
+    return redirect('/empleadoindex')
+
+#Funcion layout
+def layouts(request):
+    return render(request, "layout.html")
+
+#Funcion home
+def home(request):
+    return render(request, "home.html")
 
 
-#Usuario
+
+
+
+#Función crear usuario
 
 def crearUsuario(request):    
     nombre = request.POST['nombreInput']
@@ -95,11 +95,11 @@ def crearUsuario(request):
         )
     messages.success(request, 'User: ' + nombre +' ¡Save Success !')
     return redirect('usuarioindex')
-
+#Funcion index del usuario
 def usuarioindex(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuarioindex.html', {'usuarios': usuarios}) 
-
+#Funcion editar usuario
 def editarUsuario(request, id):
     usuarios =Usuario.objects.get(id=id)
     form =UsuarioForm(instance=usuarios)
@@ -116,13 +116,15 @@ def editarUsuario(request, id):
         'form':form
     }
     return render(request, 'editarUsuario.html', context)
-
+#Funcion eliminar el usuario
 def eliminarUsuario(request,id):
     usuarios =Usuario.objects.get(id=id)
     usuarios.delete()
     return redirect('/usuarioindex')       
 
-#crud rol   
+
+
+#Funcion crear Roles
 def crearRol(request):    
     tiporol = request.POST['tiporolInput']
     
@@ -131,11 +133,11 @@ def crearRol(request):
         )
     messages.success(request, 'User: ' + tiporol +' ¡Save Success !')
     return redirect('rolindex')
-
+#Funcion index del rol
 def rolindex(request):
     roles = Rol.objects.all()
     return render(request, 'rolindex.html', {'roles': roles}) 
-
+#Funcion editar rol
 def editarRol(request, id):
     roles =Rol.objects.get(id=id)
     form =RolForm(instance=roles)
@@ -152,7 +154,7 @@ def editarRol(request, id):
         'form':form
     }
     return render(request, 'editarRol.html', context)
-
+#Funcion eliminar rol
 def eliminarRol(request,id):
     roles =Rol.objects.get(id=id)
     roles.delete()
